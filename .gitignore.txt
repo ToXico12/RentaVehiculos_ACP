@@ -1,0 +1,31 @@
+# Compilados
+*.class
+
+# Logs
+*.logs
+
+# Archivos temporales
+*.tmp
+
+#Carpetas build
+
+/build/
+/dist/
+/target/
+/out/
+
+#Dependencias empaquetadas
+*.jar
+*.war
+*.ear
+
+#NetBeans
+
+/nbproject/private/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+
+#Sistema operativo
+.DS_SAtore
+Thumbs.db
