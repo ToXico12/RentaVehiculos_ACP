@@ -11,6 +11,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 public class VehiculoDAO {
 
     private final Conexion CON;
@@ -64,4 +68,58 @@ public class VehiculoDAO {
 
         return resp;
     }
+    
+    public List<Vehiculo> listar() {
+
+    List<Vehiculo> registros = new ArrayList<>();
+
+    try {
+
+        String sql = "SELECT * FROM vehiculo";
+
+        cn = CON.conectar();
+
+        ps = cn.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+
+            Vehiculo obj = new Vehiculo();
+
+            obj.setId(rs.getInt("id"));
+            obj.setMarca(rs.getString("marca"));
+            obj.setModelo(rs.getString("modelo"));
+            obj.setAnio(rs.getInt("anio"));
+            obj.setColor(rs.getString("color"));
+            obj.setPlaca(rs.getString("placa"));
+            obj.setPrecioDia(rs.getDouble("precio_dia"));
+            obj.setEstado(rs.getString("estado"));
+            obj.setActivo(rs.getBoolean("activo"));
+
+            registros.add(obj);
+        }
+
+    } catch (SQLException e) {
+
+        System.out.println(e.getMessage());
+
+    } finally {
+
+        try {
+
+            ps.close();
+            CON.desconectar();
+
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+        }
+    }
+
+    return registros;
+}
+    
+    
+    
 }
