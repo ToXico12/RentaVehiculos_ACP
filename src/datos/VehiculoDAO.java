@@ -118,8 +118,68 @@ public class VehiculoDAO {
     }
 
     return registros;
+    
+    
+    
+    
+    
+    
+    
 }
     
-    
+    public boolean actualizar(Vehiculo obj) {
+
+    boolean resp = false;
+
+    String sql = "UPDATE vehiculo SET "
+            + "marca = ?, "
+            + "modelo = ?, "
+            + "anio = ?, "
+            + "color = ?, "
+            + "placa = ?, "
+            + "precio_dia = ?, "
+            + "estado = ?, "
+            + "activo = ? "
+            + "WHERE id = ?";
+
+    try {
+
+        cn = CON.conectar();
+
+        ps = cn.prepareStatement(sql);
+
+        ps.setString(1, obj.getMarca());
+        ps.setString(2, obj.getModelo());
+        ps.setInt(3, obj.getAnio());
+        ps.setString(4, obj.getColor());
+        ps.setString(5, obj.getPlaca());
+        ps.setDouble(6, obj.getPrecioDia());
+        ps.setString(7, obj.getEstado());
+        ps.setBoolean(8, obj.isActivo());
+        ps.setInt(9, obj.getId());
+
+        if (ps.executeUpdate() > 0) {
+            resp = true;
+        }
+
+    } catch (SQLException e) {
+
+        System.out.println(e.getMessage());
+
+    } finally {
+
+        try {
+
+            ps.close();
+            CON.desconectar();
+
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+        }
+    }
+
+    return resp;
+}
     
 }
