@@ -182,4 +182,44 @@ public class VehiculoDAO {
     return resp;
 }
     
+    
+    
+    public boolean eliminar(int id) {
+
+    boolean resp = false;
+
+    String sql = "DELETE FROM vehiculo WHERE id = ?";
+
+    try {
+
+        cn = CON.conectar();
+
+        ps = cn.prepareStatement(sql);
+
+        ps.setInt(1, id);
+
+        if (ps.executeUpdate() > 0) {
+            resp = true;
+        }
+
+    } catch (SQLException e) {
+
+        System.out.println(e.getMessage());
+
+    } finally {
+
+        try {
+
+            ps.close();
+            CON.desconectar();
+
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+        }
+    }
+
+    return resp;
+}
+    
 }
