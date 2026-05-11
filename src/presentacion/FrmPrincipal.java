@@ -55,6 +55,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Renta");
 
+        mnuarchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/images/icons8-archivo-30.png"))); // NOI18N
         mnuarchivo.setText("Archivo");
         menuBar.add(mnuarchivo);
 
@@ -70,11 +71,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         menuBar.add(helpMenu);
 
+        mnumantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/images/icons8-mantenimiento-20.png"))); // NOI18N
         mnumantenimiento.setText("Mantenimiento");
         mnumantenimiento.setMaximumSize(new java.awt.Dimension(134, 134));
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jMenuItem1.setText("Vehiculos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         mnumantenimiento.add(jMenuItem1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK));
@@ -83,6 +90,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         menuBar.add(mnumantenimiento);
 
+        manuprocesos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/images/icons8-la-mejora-de-procesos-30.png"))); // NOI18N
         manuprocesos.setText("Procesos");
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK));
@@ -99,6 +107,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         menuBar.add(manuprocesos);
 
+        mnusalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/images/icons8-salir-redondeado-30.png"))); // NOI18N
         mnusalir.setText("Salir");
         menuBar.add(mnusalir);
 
@@ -108,21 +117,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 1133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1389, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    FrmVehiculos frm = new FrmVehiculos();
+    escritorio.add(frm);
+    frm.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
