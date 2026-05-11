@@ -27,48 +27,33 @@ public class VehiculoDAO {
     }
 
     public boolean insertar(Vehiculo obj) {
+    boolean resp = false;
+    String sql = "INSERT INTO vehiculo "
+            + "(marca, modelo, anio, color, placa, precio_dia, estado, activo) "
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        boolean resp = false;
+    try (Connection cn = CON.conectar();
+         PreparedStatement ps = cn.prepareStatement(sql)) {
 
-        String sql = "INSERT INTO vehiculo "
-                + "(marca, modelo, anio, color, placa, precio_dia, estado, activo) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        ps.setString(1, obj.getMarca());
+        ps.setString(2, obj.getModelo());
+        ps.setInt(3, obj.getAnio());
+        ps.setString(4, obj.getColor());
+        ps.setString(5, obj.getPlaca());
+        ps.setDouble(6, obj.getPrecioDia());
+        ps.setString(7, obj.getEstado());
+        ps.setBoolean(8, obj.isActivo());
 
-        try {
-
-            cn = CON.conectar();
-
-            ps = cn.prepareStatement(sql);
-
-            ps.setString(1, obj.getMarca());
-            ps.setString(2, obj.getModelo());
-            ps.setInt(3, obj.getAnio());
-            ps.setString(4, obj.getColor());
-            ps.setString(5, obj.getPlaca());
-            ps.setDouble(6, obj.getPrecioDia());
-            ps.setString(7, obj.getEstado());
-            ps.setBoolean(8, obj.isActivo());
-
-            if (ps.executeUpdate() > 0) {
-                resp = true;
-            }
-
-        } catch (SQLException e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
-        } finally {
-
-            try {
-                ps.close();
-                CON.desconectar();
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+        if (ps.executeUpdate() > 0) {
+            resp = true;
         }
 
-        return resp;
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al insertar vehículo: " + e.getMessage());
     }
+
+    return resp;
+}
     
     public List<Vehiculo> listar() {
 
