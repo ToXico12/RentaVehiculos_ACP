@@ -6,6 +6,11 @@
             <file>file:/C:/Users/camil/Documents/NetBeansProjects/RentaVehiculos_ACP/src/datos/VehiculoDAO.java</file>
             <file>file:/C:/Users/camil/Documents/NetBeansProjects/RentaVehiculos_ACP/src/presentacion/FrmPrincipal.java</file>
             <file>file:/C:/Users/camil/Documents/NetBeansProjects/RentaVehiculos_ACP/src/presentacion/FrmVehiculos.java</file>
+            <file>file:/C:/Users/camil/Documents/NetBeansProjects/RentaVehiculos_ACP/src/database/Conexion.java</file>
+            <file>file:/C:/Users/camil/Documents/NetBeansProjects/RentaVehiculos_ACP/src/entidades/Alquiler.java</file>
+            <file>file:/C:/Users/camil/Documents/NetBeansProjects/RentaVehiculos_ACP/src/entidades/Vehiculo.java</file>
+            <file>file:/C:/Users/camil/Documents/NetBeansProjects/RentaVehiculos_ACP/src/entidades/Cliente.java</file>
+            <file>file:/C:/Users/camil/Documents/NetBeansProjects/RentaVehiculos_ACP/src/entidades/Reserva.java</file>
         </group>
     </open-files>
 </project-private>
