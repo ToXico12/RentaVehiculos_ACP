@@ -59,13 +59,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         mnuarchivo.setText("Archivo");
         menuBar.add(mnuarchivo);
 
-        helpMenu.setMnemonic('h');
-
-        contentMenuItem.setMnemonic('c');
         contentMenuItem.setText("Contents");
         helpMenu.add(contentMenuItem);
 
-        aboutMenuItem.setMnemonic('a');
         aboutMenuItem.setText("About");
         helpMenu.add(aboutMenuItem);
 
@@ -86,6 +82,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jMenuItem2.setText("Clientes");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         mnumantenimiento.add(jMenuItem2);
 
         menuBar.add(mnumantenimiento);
@@ -132,6 +133,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
     escritorio.add(frm);
     frm.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+         FrmClientes frm = new FrmClientes();
+    escritorio.add(frm);
+    frm.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
