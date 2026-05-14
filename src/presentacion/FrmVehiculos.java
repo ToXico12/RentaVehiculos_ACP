@@ -6,26 +6,47 @@ package presentacion;
 
 import datos.VehiculoDAO;
 import entidades.Vehiculo;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author camil
- */
 public class FrmVehiculos extends javax.swing.JInternalFrame {
-    
-    
-    
-Vehiculo obj = new Vehiculo();
-VehiculoDAO dao = new VehiculoDAO();
 
-    /**
-     * Creates new form FrmVehiculos
-     */
+    Vehiculo obj = new Vehiculo();
+    VehiculoDAO dao = new VehiculoDAO();
+
     public FrmVehiculos() {
         initComponents();
+
+        listar();
     }
 
+    public void listar() {
+
+        List<Vehiculo> lista = dao.listar();
+
+        DefaultTableModel modelo =
+            (DefaultTableModel) tblVehiculos.getModel();
+
+        modelo.setRowCount(0);
+
+        Object[] fila = new Object[9];
+
+        for (Vehiculo v : lista) {
+
+            fila[0] = v.getId();
+            fila[1] = v.getMarca();
+            fila[2] = v.getModelo();
+            fila[3] = v.getAnio();
+            fila[4] = v.getColor();
+            fila[5] = v.getPlaca();
+            fila[6] = v.getPrecioDia();
+            fila[7] = v.getEstado();
+            fila[8] = v.isActivo();
+
+            modelo.addRow(fila);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,19 +134,58 @@ VehiculoDAO dao = new VehiculoDAO();
         });
 
         bntActualizar.setText("Actualizar");
+        bntActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntActualizarActionPerformed(evt);
+            }
+        });
 
         BtnEliminar.setText("Eliminar");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
 
         BtnLimpiar.setText("Limpiar");
+        BtnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLimpiarActionPerformed(evt);
+            }
+        });
 
         tblVehiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-
+                "No", "Marca", "Modelo", "Año", "Color", "Placa", "Precio Dia", "Estado", "Disponible"
             }
         ));
+        tblVehiculos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblVehiculosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblVehiculos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -167,30 +227,30 @@ VehiculoDAO dao = new VehiculoDAO();
                                             .addComponent(txtAnio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtColor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtPlaca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(144, 144, 144)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(144, 144, 144)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel10))
                                 .addGap(27, 27, 27)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(chkActivo)
-                                    .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnGuardar)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(bntActualizar)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(BtnEliminar)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(BtnLimpiar))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(95, Short.MAX_VALUE))))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 16, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGuardar)
+                .addGap(28, 28, 28)
+                .addComponent(bntActualizar)
+                .addGap(31, 31, 31)
+                .addComponent(BtnEliminar)
+                .addGap(18, 18, 18)
+                .addComponent(BtnLimpiar)
+                .addGap(287, 287, 287))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +274,7 @@ VehiculoDAO dao = new VehiculoDAO();
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8)
                             .addComponent(txtPrecioDia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
+                        .addContainerGap(247, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -240,14 +300,14 @@ VehiculoDAO dao = new VehiculoDAO();
                                     .addComponent(chkActivo)
                                     .addComponent(jLabel10))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnGuardar)
                                     .addComponent(bntActualizar)
                                     .addComponent(BtnEliminar)
                                     .addComponent(BtnLimpiar))
-                                .addContainerGap(84, Short.MAX_VALUE))))))
+                                .addGap(25, 25, 25))))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -272,6 +332,62 @@ VehiculoDAO dao = new VehiculoDAO();
     }//GEN-LAST:event_cbEstadoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+  obj.setMarca(txtMarca.getText());
+        obj.setModelo(txtModelo.getText());
+        obj.setAnio(Integer.parseInt(txtAnio.getText()));
+        obj.setColor(txtColor.getText());
+        obj.setPlaca(txtPlaca.getText());
+        obj.setPrecioDia(Double.parseDouble(txtPrecioDia.getText()));
+        obj.setEstado(cbEstado.getSelectedItem().toString());
+        obj.setActivo(chkActivo.isSelected());
+
+        if (dao.insertar(obj)) {
+
+            JOptionPane.showMessageDialog(null, "Registro guardado");
+
+            listar();
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Error al guardar");
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtColorActionPerformed
+
+    private void tblVehiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVehiculosMouseClicked
+       int fila = tblVehiculos.getSelectedRow();
+
+if (fila >= 0) {
+
+    txtMarca.setText(tblVehiculos.getValueAt(fila, 1).toString());
+    txtModelo.setText(tblVehiculos.getValueAt(fila, 2).toString());
+    txtAnio.setText(tblVehiculos.getValueAt(fila, 3).toString());
+    txtColor.setText(tblVehiculos.getValueAt(fila, 4).toString());
+    txtPlaca.setText(tblVehiculos.getValueAt(fila, 5).toString());
+    txtPrecioDia.setText(tblVehiculos.getValueAt(fila, 6).toString());
+
+    cbEstado.setSelectedItem(
+        tblVehiculos.getValueAt(fila, 7).toString()
+    );
+
+    chkActivo.setSelected(
+        Boolean.parseBoolean(
+            tblVehiculos.getValueAt(fila, 8).toString()
+        )
+    );
+
+    obj.setId(
+        Integer.parseInt(
+            tblVehiculos.getValueAt(fila, 0).toString()
+        )
+    );
+}
+    }//GEN-LAST:event_tblVehiculosMouseClicked
+
+    private void bntActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntActualizarActionPerformed
        obj.setMarca(txtMarca.getText());
 obj.setModelo(txtModelo.getText());
 obj.setAnio(Integer.parseInt(txtAnio.getText()));
@@ -281,19 +397,47 @@ obj.setPrecioDia(Double.parseDouble(txtPrecioDia.getText()));
 obj.setEstado(cbEstado.getSelectedItem().toString());
 obj.setActivo(chkActivo.isSelected());
 
-if (dao.insertar(obj)) {
+if (dao.actualizar(obj)) {
 
-    JOptionPane.showMessageDialog(null, "Vehículo registrado");
+    JOptionPane.showMessageDialog(null, "Registro actualizado");
+
+    listar();
 
 } else {
 
-    JOptionPane.showMessageDialog(null, "Error al registrar");
+    JOptionPane.showMessageDialog(null, "Error al actualizar");
 }
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }//GEN-LAST:event_bntActualizarActionPerformed
 
-    private void txtColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtColorActionPerformed
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+       if (dao.eliminar(obj.getId())) {
+
+    JOptionPane.showMessageDialog(null, "Registro eliminado");
+
+    listar();
+
+} else {
+
+    JOptionPane.showMessageDialog(null, "Error al eliminar");
+}
+    }//GEN-LAST:event_BtnEliminarActionPerformed
+
+    private void BtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimpiarActionPerformed
+   txtMarca.setText("");
+txtModelo.setText("");
+txtAnio.setText("");
+txtColor.setText("");
+txtPlaca.setText("");
+txtPrecioDia.setText("");
+
+cbEstado.setSelectedIndex(0);
+
+chkActivo.setSelected(false);
+
+txtMarca.requestFocus();
+
+obj = new Vehiculo();
+    }//GEN-LAST:event_BtnLimpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
