@@ -6,6 +6,7 @@ package presentacion;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,7 +40,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         };
         menuBar = new javax.swing.JMenuBar();
-        mnuarchivo = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
@@ -51,17 +51,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         mnusalir = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Renta");
 
-        mnuarchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/images/icons8-archivo-30.png"))); // NOI18N
-        mnuarchivo.setText("Archivo");
-        menuBar.add(mnuarchivo);
+        helpMenu.setMnemonic('h');
 
+        contentMenuItem.setMnemonic('c');
         contentMenuItem.setText("Contents");
         helpMenu.add(contentMenuItem);
 
+        aboutMenuItem.setMnemonic('a');
         aboutMenuItem.setText("About");
         helpMenu.add(aboutMenuItem);
 
@@ -114,12 +115,32 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jMenuItem5.setText("Pagos");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         manuprocesos.add(jMenuItem5);
 
         menuBar.add(manuprocesos);
 
         mnusalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/images/icons8-salir-redondeado-30.png"))); // NOI18N
         mnusalir.setText("Salir");
+        mnusalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnusalirActionPerformed(evt);
+            }
+        });
+
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jMenuItem6.setText("Salir");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        mnusalir.add(jMenuItem6);
+
         menuBar.add(mnusalir);
 
         setJMenuBar(menuBar);
@@ -161,6 +182,29 @@ public class FrmPrincipal extends javax.swing.JFrame {
     escritorio.add(frm);
     frm.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        FrmPagos frm = new FrmPagos();
+    escritorio.add(frm);
+    frm.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void mnusalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnusalirActionPerformed
+         
+    }//GEN-LAST:event_mnusalirActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        int opcion =
+        JOptionPane.showConfirmDialog(
+            null,
+            "¿Desea salir del sistema?"
+        );
+
+    if (opcion == 0) {
+
+        System.exit(0);
+    }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,9 +251,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenu manuprocesos;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenu mnuarchivo;
     private javax.swing.JMenu mnumantenimiento;
     private javax.swing.JMenu mnusalir;
     // End of variables declaration//GEN-END:variables
